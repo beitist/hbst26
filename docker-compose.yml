@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    # Kein "ports:" – Coolifys Proxy (Traefik) leitet hbst.kkbkha.de intern
+    # auf Port 80 des Containers weiter und kümmert sich um HTTPS.
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
