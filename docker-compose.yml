@@ -12,3 +12,18 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
+    # Härtung nach vorlagen/compose.coolify.yaml (Repo server-security-check):
+    # keine Capabilities, keine Rechteausweitung, Dateisystem schreibgeschützt bis auf /tmp.
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Im Leerlauf braucht nginx wenige MB. Der Rest ist Puffer für viele
+    # gleichzeitige Aufrufe mit gzip am Veranstaltungstag.
+    mem_limit: 256m
+    labels:
+      # Schlüssel der Anwendung in landschaft.toml (Repo server-security-check)
+      - inventar.app=berufsschultag
