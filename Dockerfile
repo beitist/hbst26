@@ -4,7 +4,7 @@
 # 71 Paketen mit curl, njs, Bildbibliotheken usw., die hier niemand braucht.
 # Update: Tag ändern, committen, deployen. Aktuelle Tags:
 # https://hub.docker.com/_/nginx/tags?name=alpine3.24-slim
-FROM nginx:1.30.6-alpine3.24-slim
+FROM nginx:1.31.10-alpine3.24-slim
 
 # Vollständige Konfiguration für den Betrieb ohne root (Erklärung in nginx.conf).
 # Den Server-Block aus dem Image braucht es dann nicht mehr.
